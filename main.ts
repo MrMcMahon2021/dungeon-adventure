@@ -1,24 +1,22 @@
-function changeLevel (levelNum: number) {
-    if (levelNum == 0) {
+function changeGameLevel (levelNumber: number) {
+    if (levelNumber == 1) {
         tiles.setTilemap(tilemap`level1`)
-        tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorMixed)
-    } else if (levelNum == 1) {
+    } else if (levelNumber == 2) {
         tiles.setTilemap(tilemap`level2`)
-        tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorMixed)
-    } else if (levelNum == 2) {
+    } else if (levelNumber == 3) {
         tiles.setTilemap(tilemap`level3`)
-        tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorMixed)
+    } else if (levelNumber == 4) {
+        tiles.setTilemap(tilemap`level4`)
     } else {
     	
     }
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardHole, function (sprite, location) {
     currentLevel += 1
-    changeLevel(currentLevel)
+    changeGameLevel(currentLevel)
 })
 let currentLevel = 0
-let mySprite: Sprite = null
-mySprite = sprites.create(img`
+let mySprite = sprites.create(img`
     . . . . . . 5 . 5 . . . . . . . 
     . . . . . f 5 5 5 f f . . . . . 
     . . . . f 1 5 2 5 1 6 f . . . . 
@@ -38,7 +36,5 @@ mySprite = sprites.create(img`
     `, SpriteKind.Player)
 controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
-info.setLife(3)
-info.setScore(0)
-currentLevel = 0
-changeLevel(0)
+currentLevel = 1
+changeGameLevel(currentLevel)
